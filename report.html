@@ -1,0 +1,46 @@
+<html>
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="report.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <table>
+      <thead>
+        <th v-for="item of fields">{{item.title}}</th>
+      </thead>
+      <tbody>
+        <tr v-for="item in items">
+          <td v-for="entry of fields">
+            <span v-if="entry.key === 'dataType'">
+              {{lalala(item[entry.key])}}
+            </span>
+            <span v-if="entry.key !== 'dataType'">
+              {{item[entry.key]}}
+            </span>
+            <!-- <input v-if="!(entry.check || entry.combo)" v-model="item[entry.key]" type="text"> -->
+            <!-- <input v-model="item[entry.key]" type="text"> -->
+            <!-- <input v-if="entry.check" v-model="item[entry.key]" type="text">
+            <select v-if="entry.combo" v-model="item[entry.key]">
+              <option v-for="option of entry.combo" v-bind:value="option.key">{{option.title}}</option>
+            </select> -->
+  
+            <!-- <multiselect v-if="entry.check" v-model="item[entry.key]" multiple="true"  :options="entry.check"> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <h1>Dados Sensíveis</h1>
+      <div v-for="item of sensible">{{item.data}}</div>
+    </div>
+    <div><h1>Dados Públicos</h1>
+      <div v-for="item of public">{{item.data}}</div>
+    </div>
+  </div>
+</body>
+
+</html>
