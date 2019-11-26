@@ -1,17 +1,20 @@
 window.onload = () => {
 
-  Vue.component('button-counter', {
-    data: function () {
-      return {
-        count: 0
-      }
-    },
-    template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-  })
+  // Vue.component('button-counter', {
+  //   data: function () {
+  //     return {
+  //       count: 0
+  //     }
+  //   },
+  //   template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+  // })
   Vue.component('dropdown', {
+    props: ['items', 'value'],
     data: function () {
       return {
-        expanded: false
+        expanded: false,
+        // items: [],
+        // value: {}
       }
     },
     methods: {
@@ -28,15 +31,10 @@ window.onload = () => {
         <div class="overSelect"></div>
       </div>
       <div v-if="expanded" class="checkBoxes">
-        test
-        <label for="one">
-          <input type="checkbox" id="one" />First checkbox</label>
-        <label for="two">
-          <input type="checkbox" id="two" />Second checkbox</label>
-        <label for="three">
-          <input type="checkbox" id="three" />Third checkbox</label>
-          </div>
-      </div>`
+        <label for="one" v-for="item of items">
+          <input type="checkbox" v-model="value[item.key]" />{{item.title}}</label>
+      </div>
+    </div>`
   })
 
   new Vue({
@@ -50,18 +48,26 @@ window.onload = () => {
         { key: 'reason', title: 'Objetivo da coleta' },
         { key: 'app', title: 'Aplicação' },
         { key: 'storage', title: 'Armazenamento' },
-        { key: 'whoHasAccess', title: 'Quem tem acesso?', check: [{ key: 0, title: 'Publico' }, { key: 1, title: 'Sensível' }] },
+        {
+          key: 'whoHasAccess', title: 'Quem tem acesso?', check: [
+            { key: 0, title: 'Titular' },
+            { key: 1, title: 'Controlador' },
+            { key: 2, title: 'Operador' },
+            { key: 3, title: 'Encarregado' }
+          ]
+        },
         { key: 'userProfile', title: 'Perfil do manipulador' },
         { key: 'userReason', title: 'Motivo do manipulador' },
         { key: 'howHasAccess', title: 'Como tem acesso' },
         // { key: 'manipulador', title: '' },
         // 'motivo'],
       ],
-      items: []
+      items: [],
+      test: [{ key: 0, title: 'oajsdnfasjd' }]
     },
     methods: {
       addEntry: function () {
-        this.items.push({})
+        this.items.push({ whoHasAccess: {} })
       },
       generateReport: function () {
         window.localStorage.setItem('items', JSON.stringify(this.items))
