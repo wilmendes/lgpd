@@ -17,7 +17,8 @@
         <tbody>
           <tr v-for="item in items">
             <td v-for="entry of fields">
-              <input v-if="!(entry.check || entry.combo)" v-model="item[entry.key]" v-bind:placeholder="entry.title" type="text">
+              <input v-if="!(entry.check || entry.combo)" v-model="item[entry.key]" v-bind:placeholder="entry.title"
+                type="text">
               <dropdown v-if="entry.check" v-bind:items="entry.check" v-bind:value="item.whoHasAccess"></dropdown>
               <select v-if="entry.combo" v-model="item[entry.key]">
                 <option v-for="option of entry.combo" v-bind:value="option.key">{{option.title}}</option>

@@ -24,6 +24,22 @@ window.onload = () => {
       }
     }
   });
+  // create the chart
+  var chart = anychart.pie();
+
+  // set the chart title
+  chart.title("Population by Race for the United States: 2010 Census");
+
+  const chartData = [
+    { x: 'Público', value: public.length },
+    { x: 'Sensível', value: sensible.length }
+  ]
+  // add the data
+  chart.data(chartData);
+
+  // display the chart in the container
+  chart.container('chart');
+  chart.draw();
 }
 
 function getSensibleData(items) {

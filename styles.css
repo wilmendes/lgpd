@@ -118,10 +118,17 @@ tbody tr:nth-child(even) td{
   flex-direction: row;
 }
 
-.category  div{
-  flex: 1
+.category > div{
+  flex: 1;
+  border: 2px solid #bbb;
+  margin: 3px;
+  padding: 5px 10px;
 }
 
 .category h1 {
   font-size: 18px;
+}
+
+#chart {
+  height:500px;
 }
